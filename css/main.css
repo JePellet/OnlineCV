@@ -4,6 +4,26 @@ body {
   overflow-x: hidden;
 }
 
+.scrollTopButton {
+  position: fixed;
+  height: 30px;
+  width: 30px;
+  margin: 0;
+  padding: 0;
+  border: 2px solid black;
+  background-color: black;
+  bottom: 20px;
+  right: 20px;
+  overflow: hidden;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+}
+.scrollTopButton.visible {
+  display: flex;
+}
+
 .scroll {
   position: fixed;
   height: 100vh;
@@ -11,7 +31,7 @@ body {
   margin: 0;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
   z-index: 1;
 }
@@ -20,18 +40,46 @@ body {
   height: 20px;
   width: 20px;
   margin: 10px;
+  padding: 0;
   border: 2px solid black;
   background-color: black;
   border-radius: 50%;
+  overflow: hidden;
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+.scrollUpButton.visible {
+  display: flex;
 }
 
 .scrollDownButton {
   height: 20px;
   width: 20px;
   margin: 10px;
+  padding: 0;
   border: 2px solid black;
   background-color: black;
   border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.scrollDownButton.visible {
+  display: none;
+}
+
+.ripple {
+  height: 40px;
+  width: 40px;
+  border: 2px solid white;
+  border-radius: 50%;
+  transform: scale(0);
+}
+.ripple.visible {
+  transform: scale(1);
+  transition: transform 0.3s;
 }
 
 .hero {
@@ -43,28 +91,42 @@ body {
   height: 100vh;
   background-color: lightblue;
   display: flex;
+  flex-direction: column;
   align-items: center;
+  justify-content: center;
 }
 
 .slider {
   height: 80%;
-  width: 100%;
-  background-color: red;
-  opacity: 0.5;
-  overflow: hidden;
+  width: 90%;
+  background-color: rgba(5, 97, 75, 1);
   display: flex;
   align-items: center;
+  justify-content: space-around;
+  overflow: hidden;
+  z-index: 2;
 }
 
 .projet {
   flex: 1;
-  height: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-width: 300px;
+  max-width: 300px;
+	height: 100%;
   margin: 20px;
-  background-color: blue;
+  opacity: 0.5;
 }
-
-.img {
-
+.projet:hover {
+  animation: focus 0.7s forwards;
+}
+@keyframes focus {
+  0% {}
+  50% {transform: translateY(-100px);}
+  100% {transform: scale(1.2) translateY(-100px);
+        opacity: 1;}
 }
 
 .cv {
