@@ -24,20 +24,47 @@ var boutonsScroll = function() {
 };
 
 
-// On empêche le scroll naturel pour ne pas tomber entre 2 div
 var body = document.querySelector('body');
-var projet = document.querySelectorAll('projet');
 var i = 0;
+// On empêche le scroll naturel pour ne pas tomber entre 2 div
 body.addEventListener('wheel', function(event) {
   event.preventDefault();
 
+
+  var projet = document.querySelectorAll('.projet');
+  var slider = document.querySelector('.slider');
+
+  //On récupère les bords droite et gauche du slider et des div les plus à droite et à gauche
+  var leftSlider = slider.getBoundingClientRect().left;
+  var rightSlider = slider.getBoundingClientRect().right;
+  var leftMost = document.getElementById('leftMostProject').getBoundingClientRect().left;
+  var rightMost = document.getElementById('rightMostProject').getBoundingClientRect().right;
+
   //On scroll horizontalement quand on hover la div slider
-  // -------------CA MARCHE PAAAAAS ----------------------
   if (slider.classList.contains('hovered')) {
-    i += event.deltaY;
-    projet.forEach(function(p) {
-      p.style.transform = 'translateX(' + i + 'vw)';
-    });
+    //Si on est trop à gauche ou trop à droite on ne scroll pas
+    if (leftSlider + leftMost > 200) {
+      if (event.deltaY > 0) {
+      } else {
+        i += event.deltaY;
+        projet.forEach(function(p) {
+          p.style.transform = 'translateX(' + i + 'vw)';
+        });
+      }
+    } else if (rightSlider - rightMost > 75) {
+      if (event.deltaY < 0) {
+      } else {
+        i += event.deltaY;
+        projet.forEach(function(p) {
+          p.style.transform = 'translateX(' + i + 'vw)';
+        });
+      }
+    } else {
+      i += event.deltaY;
+      projet.forEach(function(p) {
+        p.style.transform = 'translateX(' + i + 'vw)';
+      });
+    }
 
   //Si on scroll en bas, on descend de 100vh
   } else if (event.deltaY < 0) {
@@ -58,6 +85,15 @@ body.addEventListener('wheel', function(event) {
   setTimeout(function(){
     boutonsScroll();
   }, 625);
+});
+
+
+// On empêche le scroll par les flèches
+body.addEventListener('keydown', function(event) {
+  event.preventDefault();
+});
+body.addEventListener('keyup', function(event) {
+  event.preventDefault();
 });
 
 
@@ -125,7 +161,6 @@ scrollDown.addEventListener('click', function (){
     boutonsScroll();
   }, 625);
 });
-
 
 var slider = document.querySelector('.slider');
 //On ajoute la classe hovered quand le curseur est sur le slider
