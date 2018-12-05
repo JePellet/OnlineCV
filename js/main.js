@@ -4,22 +4,18 @@ var boutonsScroll = function() {
   var scrollTop = document.querySelector('.scrollTopButton');
   var scrollUp = document.querySelector('.scrollUpButton');
   var scrollDown = document.querySelector('.scrollDownButton');
-  var divScroll = document.querySelector('.scroll');
   if (window.scrollY === 0) {
     scrollTop.classList.remove('visible');
     scrollUp.classList.remove('visible');
     scrollDown.classList.remove('visible');
-    divScroll.style.justifyContent = 'flex-end';
   } else if (window.scrollY === window.scrollMaxY) {
     scrollTop.classList.add('visible');
     scrollUp.classList.add('visible');
     scrollDown.classList.add('visible');
-    divScroll.style.justifyContent = 'flex-start';
   } else {
     scrollTop.classList.add('visible');
     scrollUp.classList.add('visible');
     scrollDown.classList.remove('visible');
-    divScroll.style.justifyContent = 'space-between';
   }
 };
 
@@ -92,13 +88,31 @@ body.addEventListener('wheel', function(event) {
 });
 
 
-//On fait apparaître la div du projet
+//Projet WORKSHOP
 var workshop = document.querySelector('.workshop');
+var workshopFull = document.querySelector('.workshopFull');
+workshop.addEventListener('click', function() {
+   workshopFull.classList.add('visible');
+});
+
+//Projet ABC
 var abc = document.querySelector('.abc');
 var abcFull = document.querySelector('.abcFull');
-abc.addEventListener('click', function(event) {
-   abcFull.classList.add(visible);
+abc.addEventListener('click', function() {
+   abcFull.classList.add('visible');
 });
+
+
+//On ferme la div du projet
+var close = document.querySelectorAll('.btnClose');
+close.forEach(function(e) {
+  e.addEventListener('click', function() {
+    workshopFull.classList.remove('visible');
+    abcFull.classList.remove('visible');
+  });
+});
+
+
 
 
 // On empêche le scroll par les flèches
