@@ -100,55 +100,166 @@ body {
 
 .hero {
   height: 100vh;
-  background-image: url('http://placekitten.com/1280/768');
+  background-color:rgb(204, 204, 204);
   background-size: cover;
+}
+#logo {
+  max-height: 100px;
+  max-width: auto;
+
+  margin : 20px;
 }
 
 .cv {
   height: 100vh;
 
-  display: flex;
+  background-color:rgb(204, 204, 204);
+}
 
-  background-color: grey;
+.titres {
+  width: 100vw;
+
+  display: flex;
+  justify-content: space-around;
+
+  padding-top: 20px;
+}
+.titres > h2 {
+  width: 33vw;
+  text-align: center;
+}
+
+.wrapperCV {
+  height: 85vh;
+
+  display: flex;
 }
 
 .skills {
   height: 100%;
-  width: auto;
+  width: 33vw;
 
   display: flex;
   flex-direction: column;
   align-items: center;
-  flex: 1;
+  justify-content: space-around;
 
   margin: 20px;
-  
+
+}
+
+.skill {
+  width: 50%;
+}
+.skill > p {
+  text-align: center;
 }
 
 .experience {
   height: 100%;
-  width: auto;
+  width: 33vw;
 
   display: flex;
   flex-direction: column;
   align-items: center;
-  flex: 1;
+  justify-content: space-around;
 
   margin: 20px;
+}
+
+.chaqueXP {
+  height: 90%;
+  width: 70%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.xp {
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.xp > p {
+  text-align: center;
+}
+
+.barreVide {
+  height: 20px;
+  width: 100%;
+
+  border: 5px solid black;
+}
+.barreRemplie {
+  height: 100%;
+  width: 50%;
+
+  background-color: #06C4A1;
+  opacity: 0;
+
+  transform: translateX(-20vw);
+}
+.barreRemplie.visible {
+  transform: translateX(0);
+  opacity: 1;
+  transition: transform 0.7s, opacity 2s;
+
+}
+#carrefourRecep {
+  height: 100%;
+  width: 60%;
+}
+#inter {
+  height: 100%;
+  width: 100%;
+}
+#carrefourEmpCom {
+  height: 100%;
+  width: 45%;
+}
+#toupargel {
+  height: 100%;
+  width: 100%;
+}
+
+.echelleTemps {
+  width: 100%;
+
+  display: flex;
+  justify-content: space-between;
 }
 
 .interests {
   height: 100%;
-  width: auto;
+  width: 33vw;
 
   display: flex;
   flex-direction: column;
   align-items: center;
-  flex: 1;
+  justify-content: space-around;
 
   margin: 20px;
 }
+.interestsIMG {
+  max-height: 50px;
+  max-width: auto;
+}
 
+.jdr, .sportCombat, .gamer, .escalade {
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+}
+.jdr > p, .sportCombat > p, .gamer > p, .escalade > p {
+  text-align: center;
+}
 
 .projets {
   height: 100vh;
@@ -158,7 +269,8 @@ body {
   align-items: center;
   justify-content: center;
 
-  background-color: lightblue;
+  /* background-image: url("../img/bg3.jpg"); */
+  background-size: cover;
 }
 
 .slider {
@@ -169,7 +281,7 @@ body {
   align-items: center;
   justify-content: space-around;
 
-  background-color: rgba(5, 97, 75, 1);
+  background-color: #1A52A4;
 
   overflow: hidden;
   z-index: 2;
@@ -191,17 +303,55 @@ body {
 }
 .projet:hover {
   height: 140%;
-  animation: focus 0.7s forwards;
+  opacity: 1;
+  transform: scale(1.2);
+  transition: 0.7s;
 }
-@keyframes focus {
-  0%   {}
-  50%  {transform: translateY(-100px);}
-  100% {transform: scale(1.2) translateY(-100px);
-        opacity: 1;}
+.projet > img {
+  height: 300px;
+  width: auto;
+}
+.projet > p {
+  text-align: center;
+}
+
+.abcFull {
+  height: 80vh;
+  width: 90vw;
+
+  background-color: grey;
+
+  transform: scale(0);
+}
+.abcFull.visible {
+  transform: scale(1);
+  /* transform-origin: center; */
+  transition: transform 0.7s;
+}
+
+.workshop {
+  background-color: black;
+  transform: scale(0);
 }
 
 
 .about {
   height: 100vh;
-  background-color: lightblue;
+  background-color:rgb(204, 204, 204);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+.about > h2 {
+  padding-top: 20px;
+}
+
+.about > a {
+    z-index: 3;
+}
+#linkedin {
+  max-height: 100px;
+  max-width: auto;
 }

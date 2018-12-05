@@ -25,14 +25,12 @@ var boutonsScroll = function() {
 
 
 var body = document.querySelector('body');
+var projet = document.querySelectorAll('.projet');
+var slider = document.querySelector('.slider');
 var i = 0;
 // On empêche le scroll naturel pour ne pas tomber entre 2 div
 body.addEventListener('wheel', function(event) {
   event.preventDefault();
-
-
-  var projet = document.querySelectorAll('.projet');
-  var slider = document.querySelector('.slider');
 
   //On récupère les bords droite et gauche du slider et des div les plus à droite et à gauche
   var leftSlider = slider.getBoundingClientRect().left;
@@ -43,7 +41,8 @@ body.addEventListener('wheel', function(event) {
   //On scroll horizontalement quand on hover la div slider
   if (slider.classList.contains('hovered')) {
     //Si on est trop à gauche ou trop à droite on ne scroll pas
-    if (leftSlider + leftMost > 200) {
+    if (Math.abs(leftSlider - leftMost) > 20) {
+      console.log(leftSlider + leftMost);
       if (event.deltaY > 0) {
       } else {
         i += event.deltaY;
@@ -51,7 +50,7 @@ body.addEventListener('wheel', function(event) {
           p.style.transform = 'translateX(' + i + 'vw)';
         });
       }
-    } else if (rightSlider - rightMost > 75) {
+    } else if (Math.abs(rightSlider - rightMost) > 20) {
       if (event.deltaY < 0) {
       } else {
         i += event.deltaY;
@@ -66,18 +65,23 @@ body.addEventListener('wheel', function(event) {
       });
     }
 
-  //Si on scroll en bas, on descend de 100vh
+  //Si on scroll en haut, on remonte de 100vh
   } else if (event.deltaY < 0) {
     window.scrollBy({
       top: -window.innerHeight,
       behavior: 'smooth'
     });
 
-  //Si on scroll en haut, on remonte de 100vh
+  //Si on scroll en bas, on descend de 100vh
   } else {
     window.scrollBy({
       top: window.innerHeight,
       behavior: 'smooth'
+    });
+    //Quand on apparaît sur la div du CV, les animations se lancent
+    var barreRemplie = document.querySelectorAll('.barreRemplie');
+    barreRemplie.forEach(function(e) {
+      e.classList.add('visible');
     });
   };
 
@@ -88,6 +92,15 @@ body.addEventListener('wheel', function(event) {
 });
 
 
+//On fait apparaître la div du projet
+var workshop = document.querySelector('.workshop');
+var abc = document.querySelector('.abc');
+var abcFull = document.querySelector('.abcFull');
+abc.addEventListener('click', function(event) {
+   abcFull.classList.add(visible);
+});
+
+
 // On empêche le scroll par les flèches
 body.addEventListener('keydown', function(event) {
   event.preventDefault();
@@ -95,7 +108,6 @@ body.addEventListener('keydown', function(event) {
 body.addEventListener('keyup', function(event) {
   event.preventDefault();
 });
-
 
 //Bouton scrollTop pour remonter tout en haut de la page
 var scrollTop = document.querySelector('.scrollTopButton');
@@ -118,7 +130,6 @@ scrollTop.addEventListener('click', function() {
   }, 785);
 });
 
-
 //Bouton de scroll up : on remonte de 100vh
 var scrollUp = document.querySelector('.scrollUpButton');
 scrollUp.addEventListener('click', function (){
@@ -140,7 +151,6 @@ scrollUp.addEventListener('click', function (){
   }, 625);
 });
 
-
 //Bouton de scroll down : on descend de 100vh
 var scrollDown = document.querySelector('.scrollDownButton');
 scrollDown.addEventListener('click', function (){
@@ -149,6 +159,13 @@ scrollDown.addEventListener('click', function (){
     behavior: 'smooth'
   });
 
+  //Quand on apparaît sur la div du CV, les animations se lancent
+  var barreRemplie = document.querySelectorAll('.barreRemplie');
+  barreRemplie.forEach(function(e) {
+    e.classList.add('visible');
+  });
+
+  //On met l'eefet de ripple sur le bouton
   var ripple = document.getElementById('rippleDown');
   ripple.classList.toggle('visible');
   //Au bout de 300ms, soit le temps de l'animation du ripple, on désactive sa classe visible
@@ -161,6 +178,7 @@ scrollDown.addEventListener('click', function (){
     boutonsScroll();
   }, 625);
 });
+
 
 var slider = document.querySelector('.slider');
 //On ajoute la classe hovered quand le curseur est sur le slider
