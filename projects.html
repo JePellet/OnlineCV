@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="css/main.css">
+  </head>
+  <body>
+
+    <img src="img/logo.png" alt="Logo" id="logo" />
+
+    <nav id="nav">
+      <a href="index.html">Home</a>
+      <a href="cv.html">CV</a>
+      <a href="projects.html">Projets</a>
+    </nav>
+
+    <div class="scrollTopButton">
+      <div class="ripple" id="rippleTop"></div>
+    </div>
+
+    <div class="scrollUpButton">
+      <div class="ripple" id="rippleUp"></div>
+    </div>
+
+    <div class="scrollDownButton">
+      <div class="ripple" id="rippleDown"></div>
+    </div>
+
+<!-- ----------PROJETS---------- -->
+    <section class="projets" id="projets">
+      <h1>Projets</h1>
+      <div class="slider">
+
+        <div class="projet" id="leftMostProject">
+          <img src="img/workshop_GameDesign.png" alt="Workshop Gamedesign" class="workshop">
+          <p>Workshop de Gamedesign<br>3 jours</p>
+            <div class="workshop"></div>
+        </div>
+
+        <div class="projet">
+          <img src="img/ABC.png" alt="ABC Terroirs" class="abc">
+          <p>Refonte graphique d'un site e-commerce</p>
+        </div>
+
+        <div class="projet" id="rightMostProject">
+          <img src="https://placekitten.com/300/300" alt="">
+          <p>Un chaton</p>
+        </div>
+
+      </div>
+
+      <div class="workshopFull">
+        <p>Workshop</p>
+        <button type="button" name="close" class="btnClose">Fermer</button>
+      </div>
+      <div class="abcFull">
+        <p>ABC</p>
+        <button type="button" name="close" class="btnClose">Fermer</button>
+      </div>
+    </section>
+
+    <script src="js/projects.js" charset="utf-8"></script>
+  </body>
+</html>

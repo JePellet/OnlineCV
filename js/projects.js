@@ -21,41 +21,98 @@ var boutonsScroll = function() {
 
 
 var body = document.querySelector('body');
-var logo = document.getElementById('logo');
-var nav = document.getElementById('nav');
+var projet = document.querySelectorAll('.projet');
+var slider = document.querySelector('.slider');
+var i = 0;
 // On empêche le scroll naturel pour ne pas tomber entre 2 div
 body.addEventListener('wheel', function(event) {
   event.preventDefault();
 
-  //Si la nav est visible, on en scroll pas
-  if (!(nav.classList.contains('visible'))) {
-    //Si on scroll en haut, on remonte de 100vh
-    if (event.deltaY < 0) {
-      window.scrollBy({
-        top: -window.innerHeight,
-        behavior: 'smooth'
-      });
+  //On récupère les bords droite et gauche du slider et des div les plus à droite et à gauche
+  var leftSlider = slider.getBoundingClientRect().left;
+  var rightSlider = slider.getBoundingClientRect().right;
+  var leftMost = document.getElementById('leftMostProject').getBoundingClientRect().left;
+  var rightMost = document.getElementById('rightMostProject').getBoundingClientRect().right;
 
-      //Si on scroll en bas, on descend de 100vh
+  //On scroll horizontalement quand on hover la div slider
+  if (slider.classList.contains('hovered')) {
+    //Si on est trop à gauche ou trop à droite on ne scroll pas
+    if (Math.abs(leftSlider - leftMost) > 20) {
+      console.log(leftSlider + leftMost);
+      if (event.deltaY > 0) {
+      } else {
+        i += event.deltaY;
+        projet.forEach(function(p) {
+          p.style.transform = 'translateX(' + i + 'vw)';
+        });
+      }
+    } else if (Math.abs(rightSlider - rightMost) > 20) {
+      if (event.deltaY < 0) {
+      } else {
+        i += event.deltaY;
+        projet.forEach(function(p) {
+          p.style.transform = 'translateX(' + i + 'vw)';
+        });
+      }
     } else {
-      window.scrollBy({
-        top: window.innerHeight,
-        behavior: 'smooth'
+      i += event.deltaY;
+      projet.forEach(function(p) {
+        p.style.transform = 'translateX(' + i + 'vw)';
       });
     }
 
-    //Je délaye la fonction pour qu'elle s'exécute une fois le smooth scroll terminé et pas avant
-    setTimeout(function(){
-      boutonsScroll();
-    }, 625);
-  }
+  //Si on scroll en haut, on remonte de 100vh
+  } else if (event.deltaY < 0) {
+    window.scrollBy({
+      top: -window.innerHeight,
+      behavior: 'smooth'
+    });
+
+  //Si on scroll en bas, on descend de 100vh
+  } else {
+    window.scrollBy({
+      top: window.innerHeight,
+      behavior: 'smooth'
+    });
+    //Quand on apparaît sur la div du CV, les animations se lancent
+    var barreRemplie = document.querySelectorAll('.barreRemplie');
+    barreRemplie.forEach(function(e) {
+      e.classList.add('visible');
+    });
+  };
+
+  //Je délaye la fonction pour qu'elle s'exécute une fois le smooth scroll terminé et pas avant
+  setTimeout(function(){
+    boutonsScroll();
+  }, 625);
 });
 
 
-//On affiche la nav en cliquant sur le logo
-logo.addEventListener('click', function () {
-  nav.classList.toggle('visible');
+//Projet WORKSHOP
+var workshop = document.querySelector('.workshop');
+var workshopFull = document.querySelector('.workshopFull');
+workshop.addEventListener('click', function() {
+  workshopFull.classList.add('visible');
 });
+
+//Projet ABC
+var abc = document.querySelector('.abc');
+var abcFull = document.querySelector('.abcFull');
+abc.addEventListener('click', function() {
+   abcFull.classList.add('visible');
+});
+
+
+//On ferme la div du projet
+var close = document.querySelectorAll('.btnClose');
+close.forEach(function(e) {
+  e.addEventListener('click', function() {
+    workshopFull.classList.remove('visible');
+    abcFull.classList.remove('visible');
+  });
+});
+
+
 
 
 // On empêche le scroll par les flèches
@@ -134,4 +191,15 @@ scrollDown.addEventListener('click', function (){
   setTimeout(function(){
     boutonsScroll();
   }, 625);
+});
+
+
+var slider = document.querySelector('.slider');
+//On ajoute la classe hovered quand le curseur est sur le slider
+slider.addEventListener('mouseover', function(event) {
+  slider.classList.add('hovered');
+});
+//On retire la classe hovered quand le curseur n'est plus sur le slider
+slider.addEventListener('mouseleave', function(event) {
+  slider.classList.remove('hovered');
 });

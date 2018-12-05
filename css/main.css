@@ -4,25 +4,59 @@ body {
   overflow-x: hidden;
 }
 
+#logo {
+  position: absolute;
+
+  max-height: 100px;
+  max-width: auto;
+
+  margin : 20px;
+
+  z-index: 3;
+}
+
+nav {
+  position: absolute;
+
+  height: 100vh;
+  width: 100vw;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+
+  transform: translateX(-100vw);
+  transition: transform 700ms;
+
+  background-color: lightblue;
+
+  z-index: 2;
+}
+nav.visible {
+  transform: translateX(0);
+  transition: transform 700ms;
+}
+
+
 .scrollTopButton {
   position: fixed;
-  height: 30px;
-  width: 30px;
+
 
   display: none;
   justify-content: center;
   align-items: center;
 
-  margin: 0;
-  padding: 0;
+  margin:0;
+
   bottom: 20px;
   right: 20px;
 
   border: 2px solid black;
-  background-color: black;
+  background-image: url("../img/arrow-top.png");
+  background-repeat: no-repeat;
 
   overflow: hidden;
-  z-index: 2;
 }
 .scrollTopButton.visible {
   display: flex;
@@ -31,11 +65,7 @@ body {
 .scrollUpButton {
   position: fixed;
   top: 20px;
-  left: 50vw;
-
-
-  height: 20px;
-  width: 20px;
+  left: 47.5vw;
 
   display: none;
   justify-content: center;
@@ -46,7 +76,8 @@ body {
 
   border: 2px solid black;
   border-radius: 50%;
-  background-color: black;
+  background-image: url("../img/arrow-up.png");
+  background-repeat: no-repeat;
 
   overflow: hidden;
 }
@@ -57,10 +88,8 @@ body {
 .scrollDownButton {
   position: fixed;
   bottom: 20px;
-  left: 50vw;
+  left: 47.5vw;
 
-  height: 20px;
-  width: 20px;
 
   display: flex;
   justify-content: center;
@@ -71,7 +100,8 @@ body {
 
   border: 2px solid black;
   border-radius: 50%;
-  background-color: black;
+  background-image: url("../img/arrow-down.png");
+  background-repeat: no-repeat;
 
   overflow: hidden;
 }
@@ -80,8 +110,8 @@ body {
 }
 
 .ripple {
-  height: 40px;
-  width: 40px;
+  height: 48px;
+  width: 48px;
 
   border: 2px solid white;
   border-radius: 50%;
@@ -97,12 +127,6 @@ body {
   background-color:rgb(204, 204, 204);
   background-size: cover;
 }
-#logo {
-  max-height: 100px;
-  max-width: auto;
-
-  margin : 20px;
-}
 
 .cv {
   height: 100vh;
@@ -116,7 +140,8 @@ body {
   display: flex;
   justify-content: space-around;
 
-  padding-top: 20px;
+  padding-top: 75px;
+  padding-bottom: 20px;
 }
 .titres > h2 {
   width: 33vw;
@@ -144,6 +169,8 @@ body {
 
 .skill {
   width: 50%;
+
+  margin-bottom: 50px;
 }
 .skill > p {
   text-align: center;
@@ -156,7 +183,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-around;
+  justify-content: flex-start;
 
   margin: 20px;
 }
@@ -167,8 +194,8 @@ body {
 
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
   align-items: center;
+  justify-content: flex-start;
 }
 
 .xp {
@@ -362,13 +389,18 @@ button {
   justify-content: space-between;
 }
 .about > h2 {
+  margin-top: 75px;
   padding-top: 20px;
 }
 
-.about > a {
-    z-index: 3;
-}
+
 #linkedin {
+  position: absolute;
+  left: 20px;
+  bottom: -100vh;
+
+  margin: 20px;
+
   max-height: 100px;
   max-width: auto;
 }
