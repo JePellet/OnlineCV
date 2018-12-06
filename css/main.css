@@ -128,35 +128,9 @@ nav.visible {
   background-size: cover;
 }
 
-.cv {
-  height: 100vh;
-
-  background-color:rgb(204, 204, 204);
-}
-
-.titres {
-  width: 100vw;
-
-  display: flex;
-  justify-content: space-around;
-
-  padding-top: 75px;
-  padding-bottom: 20px;
-}
-.titres > h2 {
-  width: 33vw;
-  text-align: center;
-}
-
-.wrapperCV {
-  height: 85vh;
-
-  display: flex;
-}
-
 .skills {
-  height: 100%;
-  width: 33vw;
+  height: 100vh;
+  width: 100vw;
 
   display: flex;
   flex-direction: column;
@@ -164,7 +138,6 @@ nav.visible {
   justify-content: space-around;
 
   margin: 20px;
-
 }
 
 .skill {
