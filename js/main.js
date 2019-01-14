@@ -53,6 +53,7 @@ scrollLeft.addEventListener('click', function() {
   } else {
     i += 100;
     cv.style.transform = "translateX(" + i + "vw)";
+    cv.style.transition = "transform 0.4s";
     scrollLeft.style.left = i+5 + "vw";
     scrollRight.style.left = i+95 + "vw";
   }
@@ -62,8 +63,9 @@ scrollRight.addEventListener('click', function() {
   } else {
     i -= 100;
     cv.style.transform = "translateX(" + i + "vw)";
-    scrollLeft.style.left = i-5 + "vw";
-    scrollRight.style.left = i-95 + "vw";
+    cv.style.transition = "transform 0.4s";
+    scrollLeft.style.left = i+5 + "vw";
+    scrollRight.style.left = i+95 + "vw";
   }
 });
 

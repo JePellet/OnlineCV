@@ -473,6 +473,7 @@ h1 {
 
   .titres, .wrapperCV {
     width: 300vw;
+    height: auto;
   }
 
   .scrollLeft {
@@ -503,6 +504,8 @@ h1 {
   .experience {
     width: 100vw;
     left: 100vw;
+
+    /* height: 100%; */
   }
 
   .interests {
