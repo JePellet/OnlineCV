@@ -1,73 +1,30 @@
-var boutonsScroll = function() {
-  //On fait disparaitre les boutons de scroll up et top si on est en haut de la page
-  //Et le bouton scrollDown si on est en bas
-  var scrollTop = document.querySelector('.scrollTopButton');
-  var scrollUp = document.querySelector('.scrollUpButton');
-  var scrollDown = document.querySelector('.scrollDownButton');
+var body = document.querySelector('body');
+var scrollTop = document.querySelector('.scrollTopButton');
+var logo = document.getElementById('logo');
+var nav = document.getElementById('nav');
+var link = document.querySelectorAll('.navLink');
+var barreRemplie = document.querySelectorAll('.barreRemplie');
+var closeP1 = document.querySelector('.btnCloseP1');
+var closeP2 = document.querySelector('.btnCloseP2');
+var closeP3 = document.querySelector('.btnCloseP3');
+var workshop1Img = document.querySelector('.workshop1Img');
+var workshop1 = document.querySelector('.workshop1');
+var abcImg = document.querySelector('.abcImg');
+var abc = document.querySelector('.abc');
+var papImg = document.querySelector('.papImg');
+var pap = document.querySelector('.pap');
+
+
+//Bouton scrollTop pour remonter tout en haut de la page
+var boutonScroll = function() {
+  //On fait disparaitre le bouton de scroll top si on est en haut de la page
   if (window.scrollY === 0) {
     scrollTop.classList.remove('visible');
-    scrollUp.classList.remove('visible');
-    scrollDown.classList.remove('visible');
-  } else if (window.scrollY === window.scrollMaxY) {
-    scrollTop.classList.add('visible');
-    scrollUp.classList.add('visible');
-    scrollDown.classList.add('visible');
   } else {
     scrollTop.classList.add('visible');
-    scrollUp.classList.add('visible');
-    scrollDown.classList.remove('visible');
   }
 };
 
-
-var body = document.querySelector('body');
-var logo = document.getElementById('logo');
-var nav = document.getElementById('nav');
-// On empêche le scroll naturel pour ne pas tomber entre 2 div
-body.addEventListener('wheel', function(event) {
-  event.preventDefault();
-
-  //Si la nav est visible, on en scroll pas
-  if (!(nav.classList.contains('visible'))) {
-    //Si on scroll en haut, on remonte de 100vh
-    if (event.deltaY < 0) {
-      window.scrollBy({
-        top: -window.innerHeight,
-        behavior: 'smooth'
-      });
-
-      //Si on scroll en bas, on descend de 100vh
-    } else {
-      window.scrollBy({
-        top: window.innerHeight,
-        behavior: 'smooth'
-      });
-    }
-
-    //Je délaye la fonction pour qu'elle s'exécute une fois le smooth scroll terminé et pas avant
-    setTimeout(function(){
-      boutonsScroll();
-    }, 625);
-  }
-});
-
-
-//On affiche la nav en cliquant sur le logo
-logo.addEventListener('click', function () {
-  nav.classList.toggle('visible');
-});
-
-
-// On empêche le scroll par les flèches
-body.addEventListener('keydown', function(event) {
-  event.preventDefault();
-});
-body.addEventListener('keyup', function(event) {
-  event.preventDefault();
-});
-
-//Bouton scrollTop pour remonter tout en haut de la page
-var scrollTop = document.querySelector('.scrollTopButton');
 scrollTop.addEventListener('click', function() {
   window.scroll({
     top: 0,
@@ -83,55 +40,90 @@ scrollTop.addEventListener('click', function() {
 
   //Je délaye la fonction pour qu'elle s'exécute une fois le smooth scroll terminé et pas avant
   setTimeout(function(){
-    boutonsScroll();
+    boutonScroll();
   }, 785);
 });
 
-//Bouton de scroll up : on remonte de 100vh
-var scrollUp = document.querySelector('.scrollUpButton');
-scrollUp.addEventListener('click', function (){
-  window.scrollBy({
-    top: -window.innerHeight,
-    behavior: 'smooth'
-  });
+// On empêche le scroll naturel pour ne pas tomber entre 2 div
+body.addEventListener('wheel', function(event) {
+  event.preventDefault();
 
-  var ripple = document.getElementById('rippleUp');
-  ripple.classList.toggle('visible');
-  //Au bout de 300ms, soit le temps de l'animation du ripple, on désactive sa classe visible
-  setTimeout(function(){
-    ripple.classList.toggle('visible');
-  }, 300);
+  //Si la nav est visible, on ne scroll pas
+  if (!(nav.classList.contains('visible'))) {
+    //Si on scroll en haut, on remonte de 100vh
+    if (event.deltaY < 0) {
+      window.scrollBy({
+        top: -window.innerHeight,
+        behavior: 'smooth'
+      });
 
-  //Je délaye la fonction pour qu'elle s'exécute une fois le smooth scroll terminé et pas avant
-  setTimeout(function(){
-    boutonsScroll();
-  }, 625);
+      //Si on scroll en bas, on descend de 100vh
+    } else {
+      window.scrollBy({
+        top: window.innerHeight,
+        behavior: 'smooth'
+      });
+
+      //Quand on apparaît sur la div du CV, les animations se lancent
+      barreRemplie.forEach(function(e) {
+        e.classList.add('visible');
+      });
+    }
+
+    //Je délaye la fonction pour qu'elle s'exécute une fois le smooth scroll terminé et pas avant
+    setTimeout(function(){
+      boutonScroll();
+    }, 625);
+  }
 });
 
-//Bouton de scroll down : on descend de 100vh
-var scrollDown = document.querySelector('.scrollDownButton');
-scrollDown.addEventListener('click', function (){
-  window.scrollBy({
-    top: window.innerHeight,
-    behavior: 'smooth'
+// On empêche le scroll par les flèches
+body.addEventListener('keydown', function(event) {
+  event.preventDefault();
+});
+body.addEventListener('keyup', function(event) {
+  event.preventDefault();
+});
+
+//On affiche la nav en cliquant sur le logo
+logo.addEventListener('click', function() {
+  nav.classList.toggle('visible');
+});
+
+//On referme la nav en cliquant sur les liens
+link.forEach(function(l) {
+  l.addEventListener('click', function() {
+    nav.classList.toggle('visible');
+    if (l.textContent === 'CV') {
+      barreRemplie.forEach(function(e) {
+        e.classList.add('visible');
+      });
+    };
   });
+});
 
-  //Quand on apparaît sur la div du CV, les animations se lancent
-  var barreRemplie = document.querySelectorAll('.barreRemplie');
-  barreRemplie.forEach(function(e) {
-    e.classList.add('visible');
+//On affiche la div du projet quand on clique dessus
+workshop1Img.addEventListener('click', function() {
+  workshop1.classList.toggle('visible');
+
+  //On ferme la div quand on appuie sur close
+  closeP1.addEventListener('click', function() {
+    workshop1.classList.remove('visible')
   });
+});
+abcImg.addEventListener('click', function() {
+  abc.classList.toggle('visible');
 
-  //On met l'eefet de ripple sur le bouton
-  var ripple = document.getElementById('rippleDown');
-  ripple.classList.toggle('visible');
-  //Au bout de 300ms, soit le temps de l'animation du ripple, on désactive sa classe visible
-  setTimeout(function(){
-    ripple.classList.toggle('visible');
-  }, 300);
+  //On ferme la div quand on appuie sur close
+  closeP2.addEventListener('click', function() {
+    abc.classList.remove('visible')
+  });
+});
+papImg.addEventListener('click', function() {
+  pap.classList.toggle('visible');
 
-  //Je délaye la fonction pour qu'elle s'exécute une fois le smooth scroll terminé et pas avant
-  setTimeout(function(){
-    boutonsScroll();
-  }, 625);
+  //On ferme la div quand on appuie sur close
+  closeP3.addEventListener('click', function() {
+    pap.classList.remove('visible')
+  });
 });

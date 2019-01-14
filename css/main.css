@@ -1,23 +1,53 @@
+@font-face {
+  font-family: mylodon;
+  src: url(../font/Mylodon-Light.otf);
+}
+
 body {
   margin: 0;
   overflow: scroll;
   overflow-x: hidden;
+  overflow-y: hidden;
 }
 
-#logo {
-  position: absolute;
+.scrollTopButton {
+  position: fixed;
 
-  max-height: 100px;
-  max-width: auto;
+  display: none;
+  justify-content: center;
+  align-items: center;
 
-  margin : 20px;
+  margin: 0;
+  padding: 0;
+  bottom: 20px;
+  right: 20px;
 
-  z-index: 3;
+  border: 2px solid black;
+  border-radius: 50%;
+  background-image: url('../img/arrow-top.png');
+
+  overflow: hidden;
+  z-index: 2;
+}
+.scrollTopButton.visible {
+  display: flex;
+}
+
+.ripple {
+  height: 40px;
+  width: 40px;
+
+  border: 2px solid white;
+  border-radius: 50%;
+  transform: scale(0);
+}
+.ripple.visible {
+  transform: scale(1);
+  transition: transform 0.3s;
 }
 
 nav {
-  position: absolute;
-
+  position: fixed;
   height: 100vh;
   width: 100vw;
 
@@ -29,127 +59,104 @@ nav {
   transform: translateX(-100vw);
   transition: transform 700ms;
 
-  background-color: lightblue;
+  background-image: url('../img/nav.jpg');
+  background-repeat: no-repeat;
+  background-size: auto;
 
-  z-index: 2;
+  z-index: 4;
 }
 nav.visible {
   transform: translateX(0);
   transition: transform 700ms;
 }
 
-
-.scrollTopButton {
-  position: fixed;
-
-
-  display: none;
-  justify-content: center;
-  align-items: center;
-
-  margin:0;
-
-  bottom: 20px;
-  right: 20px;
-
-  border: 2px solid black;
-  background-image: url("../img/arrow-top.png");
-  background-repeat: no-repeat;
-
-  overflow: hidden;
+nav a:link {
+  font-family: mylodon;
+  font-size: 3em;
 }
-.scrollTopButton.visible {
-  display: flex;
+nav a:visited {
+  color: white;
 }
-
-.scrollUpButton {
-  position: fixed;
-  top: 20px;
-  left: 47.5vw;
-
-  display: none;
-  justify-content: center;
-  align-items: center;
-
-  margin: 10px;
-  padding: 0;
-
-  border: 2px solid black;
-  border-radius: 50%;
-  background-image: url("../img/arrow-up.png");
-  background-repeat: no-repeat;
-
-  overflow: hidden;
-}
-.scrollUpButton.visible {
-  display: flex;
-}
-
-.scrollDownButton {
-  position: fixed;
-  bottom: 20px;
-  left: 47.5vw;
-
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  margin: 10px;
-  padding: 0;
-
-  border: 2px solid black;
-  border-radius: 50%;
-  background-image: url("../img/arrow-down.png");
-  background-repeat: no-repeat;
-
-  overflow: hidden;
-}
-.scrollDownButton.visible {
-  display: none;
-}
-
-.ripple {
-  height: 48px;
-  width: 48px;
-
-  border: 2px solid white;
-  border-radius: 50%;
-  transform: scale(0);
-}
-.ripple.visible {
-  transform: scale(1);
-  transition: transform 0.3s;
+nav a:active {
+  color: red;
 }
 
 .hero {
   height: 100vh;
-  background-color:rgb(204, 204, 204);
+  background-image: url('../img/hero.jpg');
   background-size: cover;
 }
 
-.skills {
-  height: 100vh;
-  width: 100vw;
+#logo {
+  position: fixed;
+  max-height: 10vh;
+  max-width: auto;
 
-  display: flex;
-  /* flex-direction: column; */
-  align-items: center;
-  justify-content: space-around;
-  flex: 1;
+  margin : 20px;
 
-  margin: 20px;
+  z-index: 5;
 }
 
-/* .skillsCol1 {
+.accroche {
+  height: 100vh;
+
   display: flex;
   flex-direction: column;
-} */
+  justify-content: center;
+  align-items: center;
+}
+h1 {
+  font-family: mylodon;
+  font-size: 5em;
+}
+.accroche p {
+  font-size: 1.5em;
+  text-align: center;
+}
+
+.cv {
+  height: 100vh;
+
+  background-image: url('../img/bg2.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.titres {
+  width: 100vw;
+  font-family: mylodon;
+
+  display: flex;
+  justify-content: space-around;
+
+  padding-top: 20px;
+}
+.titres > h2 {
+  width: 33vw;
+  text-align: center;
+}
+
+.wrapperCV {
+  height: 85vh;
+
+  display: flex;
+}
+
+.skills {
+  height: 100%;
+  width: 33vw;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+
+  margin: 20px;
+
+}
 
 .skill {
   width: 50%;
-
-  margin-bottom: 50px;
 }
 .skill > p {
   text-align: center;
@@ -162,7 +169,7 @@ nav.visible {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: space-around;
 
   margin: 20px;
 }
@@ -173,8 +180,8 @@ nav.visible {
 
   display: flex;
   flex-direction: column;
+  justify-content: space-around;
   align-items: center;
-  justify-content: flex-start;
 }
 
 .xp {
@@ -184,10 +191,10 @@ nav.visible {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-}
-.xp > p {
+
   text-align: center;
 }
+
 
 .barreVide {
   height: 20px;
@@ -269,8 +276,11 @@ nav.visible {
   align-items: center;
   justify-content: center;
 
-  /* background-image: url("../img/bg3.jpg"); */
+  background-image: url('../img/bg3.jpg');
+  background-repeat: no-repeat;
   background-size: cover;
+
+  color: white;
 }
 
 .slider {
@@ -281,7 +291,8 @@ nav.visible {
   align-items: center;
   justify-content: space-around;
 
-  background-color: #1A52A4;
+  background-color: rgb(26, 26, 26);
+  opacity: 0.8;
 
   overflow: hidden;
   z-index: 2;
@@ -298,7 +309,6 @@ nav.visible {
   flex-direction: column;
   justify-content: center;
 
-  opacity: 0.5;
   z-index: 2;
 }
 .projet:hover {
@@ -307,7 +317,7 @@ nav.visible {
   transform: scale(1.2);
   transition: 0.7s;
 }
-.projet > img {
+.projet img {
   height: 300px;
   width: auto;
 }
@@ -315,71 +325,131 @@ nav.visible {
   text-align: center;
 }
 
-button {
-  position: absolute;
-  bottom: 20px;
-  left: 50vw;
+.insideProject {
+  width: 100%;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+
+  text-align: center;
 }
 
-.workshopFull {
+.workshop1 {
   position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+
+  text-align: center;
 
   height: 100vh;
   width: 100vw;
 
-  background-color: grey;
+  background-color: rgb(26, 26, 26);
   transform: scale(0);
   transition: transform 0.7s;
 
   z-index: 3;
 }
-.workshopFull.visible {
+.workshop1.visible {
   transform: scale(1);
-  transform-origin: center;
   transition: transform 0.7s;
 }
 
-.abcFull {
+.abc {
   position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+
+  text-align: center;
 
   height: 100vh;
   width: 100vw;
 
-  background-color: grey;
+  background-color: rgb(26, 26, 26);
   transform: scale(0);
   transition: transform 0.7s;
 
   z-index: 3;
 }
-.abcFull.visible {
+.abc.visible {
   transform: scale(1);
-  transform-origin: center;
   transition: transform 0.7s;
 }
+.abc img {
+  max-width: 40vw;
+  max-height: 40vh;
+}
+.abc .images {
+  display: flex;
+  justify-content: space-around;
+}
+.before .after {
+  width: 40vw;
+}
 
+.pap {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+
+  text-align: center;
+
+  height: 100vh;
+  width: 100vw;
+
+  background-color: rgb(26, 26, 26);
+  transform: scale(0);
+  transition: transform 0.7s;
+
+  z-index: 3;
+}
+.pap.visible {
+  transform: scale(1);
+  transition: transform 0.7s;
+}
+.papImages {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+
+  height: 70vh;
+}
+.pap img {
+  max-height: 40vh;
+  max-width: 40vw;
+}
 
 .about {
   height: 100vh;
-  background-color:rgb(204, 204, 204);
+  background-image: url('../img/bg4.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  color: white;
+  text-align: center;
 
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
 }
-.about > h2 {
-  margin-top: 75px;
-  padding-top: 20px;
+.about p {
+  font-size: 1.5em;
 }
 
-
+.about > a {
+    z-index: 2;
+}
 #linkedin {
-  position: absolute;
-  left: 20px;
-  bottom: -100vh;
-
-  margin: 20px;
-
   max-height: 100px;
   max-width: auto;
 }
