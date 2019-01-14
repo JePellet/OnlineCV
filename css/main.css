@@ -123,7 +123,7 @@ h1 {
 }
 
 .titres {
-  width: 100vw;
+  width: 100%;
   font-family: mylodon;
 
   display: flex;
@@ -204,9 +204,8 @@ h1 {
 }
 .barreRemplie {
   height: 100%;
-  width: 50%;
 
-  background-color: #06C4A1;
+  background-color: #32967A;
   opacity: 0;
 
   transform: translateX(-20vw);
@@ -217,6 +216,17 @@ h1 {
   transition: transform 0.7s, opacity 2s;
 
 }
+
+#uxMethodo {
+  width: 80%;
+}
+#frontEnd {
+  width: 65%;
+}
+#techWatch {
+  width: 70%;
+}
+
 #carrefourRecep {
   height: 100%;
   width: 60%;
@@ -450,6 +460,53 @@ h1 {
     z-index: 2;
 }
 #linkedin {
-  max-height: 100px;
+  max-height: 10vh;
   max-width: auto;
+}
+
+
+@media (max-width: 1023px) {
+  .cv {
+    width: 300vw;
+    overflow-x: scroll;
+  }
+
+  .titres, .wrapperCV {
+    width: 300vw;
+  }
+
+  .scrollLeft {
+    position: absolute;
+    left: 5vw;
+    top: 150vh;
+
+    background-color: black;
+    border: solid black 2px;
+    height: 1vh;
+    width: 1vw;
+  }
+  .scrollRight {
+    position: absolute;
+    left: 95vw;
+    top: 150vh;
+
+    background-color: black;
+    border: solid black 2px;
+    height: 1vh;
+    width: 1vw;
+  }
+
+  .skills {
+    width: 100vw;
+  }
+
+  .experience {
+    width: 100vw;
+    left: 100vw;
+  }
+
+  .interests {
+    width: 100vw;
+    left: 200vw;
+  }
 }

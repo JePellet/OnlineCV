@@ -13,6 +13,10 @@ var abcImg = document.querySelector('.abcImg');
 var abc = document.querySelector('.abc');
 var papImg = document.querySelector('.papImg');
 var pap = document.querySelector('.pap');
+var scrollLeft = document.querySelector('.scrollLeft');
+var scrollRight = document.querySelector('.scrollRight');
+var cv = document.querySelector('.cv');
+
 
 
 //Bouton scrollTop pour remonter tout en haut de la page
@@ -24,7 +28,6 @@ var boutonScroll = function() {
     scrollTop.classList.add('visible');
   }
 };
-
 scrollTop.addEventListener('click', function() {
   window.scroll({
     top: 0,
@@ -44,10 +47,29 @@ scrollTop.addEventListener('click', function() {
   }, 785);
 });
 
+var i = 0;
+scrollLeft.addEventListener('click', function() {
+  if (i === 0) {
+  } else {
+    i += 100;
+    cv.style.transform = "translateX(" + i + "vw)";
+    scrollLeft.style.left = i+5 + "vw";
+    scrollRight.style.left = i+95 + "vw";
+  }
+});
+scrollRight.addEventListener('click', function() {
+  if (i === -200) {
+  } else {
+    i -= 100;
+    cv.style.transform = "translateX(" + i + "vw)";
+    scrollLeft.style.left = i-5 + "vw";
+    scrollRight.style.left = i-95 + "vw";
+  }
+});
+
 // On empêche le scroll naturel pour ne pas tomber entre 2 div
 body.addEventListener('wheel', function(event) {
   event.preventDefault();
-
   //Si la nav est visible, on ne scroll pas
   if (!(nav.classList.contains('visible'))) {
     //Si on scroll en haut, on remonte de 100vh
