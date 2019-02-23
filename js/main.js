@@ -21,7 +21,7 @@ var containerSlider = document.querySelector('.containerSlider');
 var scrollLeftProjects = document.querySelector('.scrollLeftProjects');
 var scrollRightProjects = document.querySelector('.scrollRightProjects');
 
-
+ 
 //Bouton scrollTop pour remonter tout en haut de la page
 var boutonScroll = function() {
   //On fait disparaitre le bouton de scroll top si on est en haut de la page
