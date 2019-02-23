@@ -7,16 +7,19 @@ var barreRemplie = document.querySelectorAll('.barreRemplie');
 var closeP1 = document.querySelector('.btnCloseP1');
 var closeP2 = document.querySelector('.btnCloseP2');
 var closeP3 = document.querySelector('.btnCloseP3');
+var slider = document.querySelector('.slider');
 var workshop1Img = document.querySelector('.workshop1Img');
 var workshop1 = document.querySelector('.workshop1');
 var abcImg = document.querySelector('.abcImg');
 var abc = document.querySelector('.abc');
 var papImg = document.querySelector('.papImg');
 var pap = document.querySelector('.pap');
-var scrollLeft = document.querySelector('.scrollLeft');
-var scrollRight = document.querySelector('.scrollRight');
-var cv = document.querySelector('.cv');
-
+var scrollLeftCV = document.querySelector('.scrollLeftCV');
+var scrollRightCV = document.querySelector('.scrollRightCV');
+var container = document.querySelector('.container');
+var containerSlider = document.querySelector('.containerSlider');
+var scrollLeftProjects = document.querySelector('.scrollLeftProjects');
+var scrollRightProjects = document.querySelector('.scrollRightProjects');
 
 
 //Bouton scrollTop pour remonter tout en haut de la page
@@ -48,24 +51,37 @@ scrollTop.addEventListener('click', function() {
 });
 
 var i = 0;
-scrollLeft.addEventListener('click', function() {
+scrollLeftCV.addEventListener('click', function() {
   if (i === 0) {
   } else {
     i += 100;
-    cv.style.transform = "translateX(" + i + "vw)";
-    cv.style.transition = "transform 0.4s";
-    scrollLeft.style.left = i+5 + "vw";
-    scrollRight.style.left = i+95 + "vw";
+    container.style.transform = "translateX(" + i + "vw)";
+    container.style.transition = "transform 0.4s";
   }
 });
-scrollRight.addEventListener('click', function() {
+scrollRightCV.addEventListener('click', function() {
   if (i === -200) {
   } else {
     i -= 100;
-    cv.style.transform = "translateX(" + i + "vw)";
-    cv.style.transition = "transform 0.4s";
-    scrollLeft.style.left = i+5 + "vw";
-    scrollRight.style.left = i+95 + "vw";
+    container.style.transform = "translateX(" + i + "vw)";
+    container.style.transition = "transform 0.4s";
+
+  };
+});
+
+j = 0;
+scrollLeftProjects.addEventListener('click', function() {
+  if (workshop1Img.getBoundingClientRect().left >= slider.getBoundingClientRect().left+20) {
+  } else {
+    j +=50;
+    containerSlider.style.transform = "translateX(" + j + "px)";
+  }
+});
+scrollRightProjects.addEventListener('click', function() {
+  if (papImg.getBoundingClientRect().right <= slider.getBoundingClientRect().right-20) {
+  } else {
+    j -=50;
+    containerSlider.style.transform = "translateX(" + j + "px)";
   }
 });
 
